@@ -2,7 +2,7 @@ import setuptools
 version = '1.16.0'
 
 setuptools.setup(
-    name='e-x',
+    name='ocvcoin_e-x',
     version=version,
     scripts=['electrumx_server', 'electrumx_rpc', 'electrumx_compact_history'],
     python_requires='>=3.8',
@@ -26,14 +26,13 @@ setuptools.setup(
         'cpupower': ['cpupower'],
     },
     packages=setuptools.find_packages(include=('electrumx*',)),
-    description='ElectrumX Server',
+    description='ElectrumX Server for Ocvcoin',
     author='Electrum developers',
-    author_email='electrumdev@gmail.com',
+    author_email='contact@ocvcoin.com',
     license='MIT Licence',
-    url='https://github.com/spesmilo/electrumx',
+    url='https://github.com/ocvcoin/electrumx',
     long_description='Server implementation for the Electrum protocol',
-    download_url=('https://github.com/spesmilo/electrumX/archive/'
-                  f'{version}.tar.gz'),
+    download_url=('https://github.com/ocvcoin/electrumx/archive/refs/heads/master.tar.gz'),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Framework :: AsyncIO',
