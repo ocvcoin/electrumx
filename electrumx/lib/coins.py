@@ -30,9 +30,11 @@ Anything coin-specific should go in this file and be subclassed where
 necessary for appropriate handling.
 '''
 
+'''
 import cv2
 import numpy as np
 import hashlib
+'''
 
 import re
 import struct
@@ -55,7 +57,13 @@ import electrumx.server.block_processor as block_proc
 import electrumx.server.daemon as daemon
 from electrumx.server.session import (ElectrumX, DashElectrumX,
                                       SmartCashElectrumX, AuxPoWElectrumX)
+import ctypes
 
+
+libocv2 = ctypes.CDLL("libocv2.so")
+
+if not libocv2.ocv2_test_algo():
+    exit("Error!! ocv2_test_algo() failed.");
 
 @dataclass
 class Block:
@@ -4022,7 +4030,7 @@ class Syscoin(AuxPowMixin, Coin):
     CHUNK_SIZE = 360
 
 
-
+'''
 
 
 def ocv_new_hash_block(block_data):
@@ -4176,7 +4184,7 @@ def ocv_hash_block(block_data):
     return hashlib.sha256(byte_im+block_data).digest()
     
     
-    
+'''   
 
 
 
@@ -4225,11 +4233,18 @@ class Ocvcoin(BitcoinMixin, Coin):
     def header_hash(cls, header):
         '''Given a header return the hash.'''
         
+        '''
         new_algo_time = int.from_bytes(header[68:72], "little", signed=False)    
         if new_algo_time >= 1636416000:
             ret_data_hash = ocv_new_hash_block(header)[::-1]
         else:
             ret_data_hash = ocv_hash_block(header)
+        '''
         
+        block_header = bytes(header)
+        output = ctypes.create_string_buffer(32)
+        p1 = ctypes.c_char_p(block_header)
+        libocv2.ocv2_hash(p1,output)
         
-        return ret_data_hash
+        #return ret_data_hash
+        return output.raw
