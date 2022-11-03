@@ -58,9 +58,13 @@ import electrumx.server.daemon as daemon
 from electrumx.server.session import (ElectrumX, DashElectrumX,
                                       SmartCashElectrumX, AuxPoWElectrumX)
 import ctypes
+import os
 
+if os.name == 'nt':
+  libocv2 = ctypes.CDLL("libocv2.dll")
+else:
+  libocv2 = ctypes.CDLL("libocv2.so")
 
-libocv2 = ctypes.CDLL("libocv2.so")
 
 if not libocv2.ocv2_test_algo():
     exit("Error!! ocv2_test_algo() failed.");
