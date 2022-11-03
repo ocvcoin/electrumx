@@ -1,7 +1,5 @@
-.. image:: https://travis-ci.org/spesmilo/electrumx.svg?branch=master
-    :target: https://travis-ci.org/spesmilo/electrumx
-.. image:: https://coveralls.io/repos/github/spesmilo/electrumx/badge.svg
-    :target: https://coveralls.io/github/spesmilo/electrumx
+You must install `libocv2 <https://github.com/ocvcoin/ocv2_algo>`_ on your computer before installing this!
+
 
 ===============================================
 ElectrumX - Reimplementation of electrum-server
